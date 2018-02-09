@@ -84,13 +84,13 @@ filter_field(T)
 dt = 0.001
 
 # Integration parameters
-solver.stop_sim_time = 10000#0
+solver.stop_sim_time = 4000
 solver.stop_wall_time = 30 * 60.
 solver.stop_iteration = np.inf
 
 # Analysis
-snapshots = solver.evaluator.add_file_handler('snapshots', sim_dt=1., max_writes=50)
-snapshots.add_system(solver.state)
+snapshots = solver.evaluator.add_file_handler('snapshots', sim_dt=10., max_writes=50)
+snapshots.add_system(solver.state, scales=4)
 
 timeseries = solver.evaluator.add_file_handler('timeseries',iter=1, max_writes=np.inf)
 timeseries.add_task("vol_avg(sqrt(u*u))",name='urms')
